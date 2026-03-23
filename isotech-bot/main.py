@@ -35,3 +35,9 @@ async def chat(request: ChatRequest):
     except Exception as e:
         # Se c'è un errore, lo vedrai nella chat del sito
         return {"reply": f"Errore tecnico: {str(e)}"}
+  if __name__ == "__main__":
+      import uvicorn
+      import os
+      # Questo serve a Render per assegnare la porta corretta
+      port = int(os.environ.get("PORT", 10000))
+      uvicorn.run(app, host="0.0.0.0", port=port)
