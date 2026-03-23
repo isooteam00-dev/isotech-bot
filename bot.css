@@ -1,0 +1,103 @@
+/* L'iconcina tonda in basso a destra */
+#chat-widget-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#chat-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #0078ff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+#chat-icon:hover {
+    transform: scale(1.1);
+}
+
+/* La finestra della chat */
+#chat-window {
+    display: none; /* Inizia nascosta */
+    flex-direction: column;
+    width: 350px;
+    height: 450px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#chat-header {
+    background: #0078ff;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f9f9f9;
+}
+
+/* Stile dei messaggi */
+.user-msg {
+    align-self: flex-end;
+    background: #0078ff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 15px 15px 0 15px;
+    max-width: 80%;
+}
+
+.bot-msg {
+    align-self: flex-start;
+    background: #e0e0e0;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 15px 15px 15px 0;
+    max-width: 80%;
+}
+
+/* Area di input */
+#chat-footer {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+#chat-input {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 15px;
+    outline: none;
+}
+
+#chat-send-btn {
+    background: none;
+    border: none;
+    color: #0078ff;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+}
