@@ -6,16 +6,16 @@ from groq import Groq
 
 app = FastAPI()
 
-# Permette al tuo sito (index.html) di parlare con questo script Python
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Inizializza il client di Groq usando la chiave che abbiamo messo nel terminale
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+# Sostituisci la scritta tra virgolette con la tua chiave gsk_...
+client = Groq(api_key="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")
 
 class ChatRequest(BaseModel):
     message: str
@@ -23,21 +23,18 @@ class ChatRequest(BaseModel):
 @app.post("/chat")
 async def chat(request: ChatRequest):
     try:
-        # Qui usiamo il modello Llama 3 di Groq (velocissimo e gratis)
         completion = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=[
-                {"role": "system", "content": "Sei l'assistente ufficiale di IsoTech 🚀. Sei esperto di automazione e siti web. Sei simpatico, usi spesso le emoji e dai del 'tu' all'utente. Spiega che IsoTech trasforma le idee in realtà digitale e invita sempre a chiedere un preventivo gratuito!"},
+                {"role": "system", "content": "Sei l'assistente di IsoTech."},
                 {"role": "user", "content": request.message}
-            ],
+            ]
         )
-        return {"reply": completion.choices[0].message.content}
+        return {"response": completion.choices[0].message.content}
     except Exception as e:
-        # Se c'è un errore, lo vedrai nella chat del sito
-        return {"reply": f"Errore tecnico: {str(e)}"}
-  if __name__ == "__main__":
-      import uvicorn
-      import os
-      # Questo serve a Render per assegnare la porta corretta
-      port = int(os.environ.get("PORT", 10000))
-      uvicorn.run(app, host="0.0.0.0", port=port)
+        return {"response": f"Errore: {str(e)}"}
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
