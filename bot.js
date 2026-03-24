@@ -21,7 +21,7 @@ async function sendMessage() {
 
     try {
         // 2. Chiama il tuo server locale (il main.py su porta 8000)
-        const response = await fetch('http://127.0.0.1:8000/chat', {
+        const response = await fetch('https://isotech-bot.onrender.com/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
